@@ -92,8 +92,6 @@ The HDD is mounted at: /mnt/hdd
 
 Completed:
 
-Completed:
-
 - Proxmox web interface accessible
 - SSH access working
 - Network connectivity confirmed
