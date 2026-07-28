@@ -2,45 +2,65 @@
 
 ## Overview
 
-This document describes the network configuration of the homelab.
+This document describes the network topology and addressing used by the homelab.
+
+As the lab grows, this document will be updated to reflect changes in infrastructure, services, and network segmentation.
 
 ---
 
-## Physical Network
+# Physical Topology
 
-Internet
-↓
-ISP Router
-↓
-Dell OptiPlex 3020 MT (Proxmox Host)
+```
+                    Internet
+                        │
+                  ISP Router
+                        │
+        ┌───────────────┴───────────────┐
+        │                               │
+   Personal Devices              Proxmox Host
+                                   │
+                      ┌────────────┼────────────┐
+                      │            │            │
+                    Kali      Docker VM    Windows VM
+```
 
 ---
 
-## LAN
+# Network Information
 
 | Setting | Value |
-|---------|-------|
-| Router IP | 192.168.11.1 |
-| Subnet | 192.168.11.0/24 |
+|----------|-------|
+| LAN Network | 192.168.11.0/24 |
 | Gateway | 192.168.11.1 |
-| DNS | Router (will change later) |
+| Router | ISP Router |
+| DNS | Router (temporary) |
 
 ---
 
-## Planned Static Addresses
+# Planned IP Addressing
 
-| Device | IP |
-|---------|----|
-| Proxmox | 192.168.11.10 |
+| Device | Planned Address |
+|----------|----------------|
+| Proxmox Host | 192.168.11.10 |
 | Docker VM | 192.168.11.20 |
-| Kali VM | DHCP |
+| Kali Linux | DHCP |
 | Windows VM | DHCP |
 
+> Static addresses will be assigned only to infrastructure services. Client virtual machines may continue using DHCP unless a static address becomes necessary.
+
 ---
 
-## Future
+# Future Improvements
 
-- VLANs
-- Reverse Proxy
-- Tailscale
-- Remote access
+- Dedicated DNS server
+- Reverse proxy
+- Tailscale remote access
+- VLAN segmentation
+- Network monitoring
+- Firewall hardening
+
+---
+
+# Notes
+
+This network is intentionally kept simple during the initial stages of the project. Additional complexity will be introduced gradually as new services and security labs are deployed.
